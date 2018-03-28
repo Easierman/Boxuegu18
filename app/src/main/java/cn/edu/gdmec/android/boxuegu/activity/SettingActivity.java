@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import cn.edu.gdmec.android.boxuegu.R;
 
 /**
@@ -59,6 +58,8 @@ public class SettingActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //跳转到修改密码的界面
+                Intent intent = new Intent(SettingActivity.this,ModifyPswActivity.class);
+                startActivity(intent);
             }
         });
         //设置密保的点击事件
@@ -75,11 +76,10 @@ public class SettingActivity extends AppCompatActivity{
                 Toast.makeText(SettingActivity.this,"退出登录成功",Toast.LENGTH_SHORT).show();
                 clearLoginStatus();//清除登录状态和登录是的用户名
                 //退出登录成功后把退出成功的状态传递到MainActivity中
-                Intent intent = new Intent();
-                /*data.putExtra("isLogin",false);
+                Intent data = new Intent();
+                data.putExtra("isLogin",false);
                 setResult(RESULT_OK,data);
-                SettingActivity.this,finish();*/
-
+                SettingActivity.this.finish();
             }
         });
     }
@@ -88,9 +88,9 @@ public class SettingActivity extends AppCompatActivity{
     * */
     private void clearLoginStatus(){
         SharedPreferences sp = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("isLogin",false);
-        editor.putString("loginUserName","");
-        editor.commit();
+        SharedPreferences.Editor editor = sp.edit();//获取编辑器
+        editor.putBoolean("isLogin",false);//清除登录状态
+        editor.putString("loginUserName","");//清除用户名
+        editor.commit();//提交修改
     }
 }
