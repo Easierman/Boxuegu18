@@ -66,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //跳转到找回密码界面（未创建）
+                Intent intent=new Intent(LoginActivity.this,FindPswActivity.class);
+                startActivity(intent);
             }
         });
         //登录按钮的点击事件
@@ -84,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 } else if (md5Psw.equals(spPsw)){
                     Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-                    //b保存登录状态和登录的用户名
+                    //保存登录状态和登录的用户名
                     saveLoginStatus(true,userName);
                     Intent data = new Intent();
                     data.putExtra("isLogin",true);
